@@ -1,0 +1,77 @@
+rosbag2_bagfile_information:
+  compression_format: ''
+  compression_mode: ''
+  custom_data: null
+  duration:
+    nanoseconds: 425110983950
+  files:
+  - duration:
+      nanoseconds: 425110983950
+    message_count: 220658
+    path: rosbag_example.db3
+    starting_time:
+      nanoseconds_since_epoch: 1680266168116151436
+  message_count: 220658
+  relative_file_paths:
+  - rosbag_example.db3
+  ros_distro: rosbags
+  starting_time:
+    nanoseconds_since_epoch: 1680266168116151436
+  storage_identifier: sqlite3
+  topics_with_message_count:
+  - message_count: 1
+    topic_metadata:
+      name: /t265/accel/imu_info
+      offered_qos_profiles: "- avoid_ros_namespace_conventions: false\n  deadline:
+        {nsec: 4294967295, sec: 2147483647}\n  depth: 0\n  durability: 1\n  history:
+        3\n  lifespan: {nsec: 4294967295, sec: 2147483647}\n  liveliness: 1\n  liveliness_lease_duration:
+        {nsec: 4294967295, sec: 2147483647}\n  reliability: 1"
+      serialization_format: cdr
+      type: realsense2_camera/msg/IMUInfo
+      type_description_hash: RIHS01_e146f773d597d27ec0da37eff57a2ff497118cd0eb0b65cde942101e50ae8c7a
+  - message_count: 1
+    topic_metadata:
+      name: /t265/gyro/imu_info
+      offered_qos_profiles: "- avoid_ros_namespace_conventions: false\n  deadline:
+        {nsec: 4294967295, sec: 2147483647}\n  depth: 0\n  durability: 1\n  history:
+        3\n  lifespan: {nsec: 4294967295, sec: 2147483647}\n  liveliness: 1\n  liveliness_lease_duration:
+        {nsec: 4294967295, sec: 2147483647}\n  reliability: 1"
+      serialization_format: cdr
+      type: realsense2_camera/msg/IMUInfo
+      type_description_hash: RIHS01_e146f773d597d27ec0da37eff57a2ff497118cd0eb0b65cde942101e50ae8c7a
+  - message_count: 85073
+    topic_metadata:
+      name: /t265/gyro/sample
+      offered_qos_profiles: ''
+      serialization_format: cdr
+      type: sensor_msgs/msg/Imu
+      type_description_hash: RIHS01_7d9a00ff131080897a5ec7e26e315954b8eae3353c3f995c55faf71574000b5b
+  - message_count: 85065
+    topic_metadata:
+      name: /t265/odom/sample
+      offered_qos_profiles: ''
+      serialization_format: cdr
+      type: nav_msgs/msg/Odometry
+      type_description_hash: RIHS01_3cc97dc7fb7502f8714462c526d369e35b603cfc34d946e3f2eda2766dfec6e0
+  - message_count: 27138
+    topic_metadata:
+      name: /t265/accel/sample
+      offered_qos_profiles: ''
+      serialization_format: cdr
+      type: sensor_msgs/msg/Imu
+      type_description_hash: RIHS01_7d9a00ff131080897a5ec7e26e315954b8eae3353c3f995c55faf71574000b5b
+  - message_count: 21254
+    topic_metadata:
+      name: /odom
+      offered_qos_profiles: ''
+      serialization_format: cdr
+      type: nav_msgs/msg/Odometry
+      type_description_hash: RIHS01_3cc97dc7fb7502f8714462c526d369e35b603cfc34d946e3f2eda2766dfec6e0
+  - message_count: 2126
+    topic_metadata:
+      name: /fix
+      offered_qos_profiles: ''
+      serialization_format: cdr
+      type: sensor_msgs/msg/NavSatFix
+      type_description_hash: RIHS01_62223ab3fe210a15976021da7afddc9e200dc9ec75231c1b6a557fc598a65404
+  version: 2

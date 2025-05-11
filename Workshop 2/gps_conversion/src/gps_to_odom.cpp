@@ -1,8 +1,10 @@
-#include <rclcpp/rclcpp.hpp>
-#include <cmath>
-#include <nav_msgs/msg/odometry.hpp>
-#include <sensor_msgs/msg/nav_sat_fix.hpp>
+#include "rclcpp/rclcpp.hpp"
+#include "cmath"
+#include "nav_msgs/msg/odometry.hpp"
+#include "sensor_msgs/msg/nav_sat_fix.hpp"
 
+
+// Parameters used in gps conversion
 #define a 6378137.0
 #define b 6356752.0
 
@@ -15,11 +17,13 @@ public:
         this->declare_parameter("lon_r", 0.0);
         this->declare_parameter("alt_r", 0.0);
 
+        // Create the subscriber to gps data
         gps_sub_ = this->create_subscription<sensor_msgs::msg::NavSatFix>(
             "fix", 10,
-            std::bind(&GpsToOdom::gpsCallback, this, std::placeholders::_1)
+            std::bind(&gps_to_odom::gpsCallback, this, std::placeholders::_1)
         );
 
+        // Create the publisher for converted odometry data
         odom_pub_ = this->create_publisher<nav_msgs::msg::Odometry>("gps_odom", 10);
     }
 
@@ -30,6 +34,7 @@ private:
     double lat1_, lon1_;
     double e_squared_;
 
+    // Inside the callback, we convert from gps to odom (see slides for mathematical procedure )
     void gpsCallback(const sensor_msgs::msg::NavSatFix::SharedPtr msg) {
         double lat_r, lon_r, alt_r;
         this->get_parameter("lat_r", lat_r);
@@ -67,7 +72,7 @@ private:
                      + cos(lat_r_rad) * sin(lon_r_rad) * (y_ecef - y_r)
                      + sin(lat_r_rad) * (z_ecef - z_r);
 
-        // Orientamento
+        // Orientation
         double lat2 = y_enu;
         double lon2 = x_enu;
 
@@ -91,6 +96,7 @@ private:
             quat_w = cos(theta / 2);
         }
 
+        // Finally, we insert the data in the odometry message
         auto odom_msg = nav_msgs::msg::Odometry();
         odom_msg.header.stamp = this->get_clock()->now();
         odom_msg.header.frame_id = "world";
@@ -105,13 +111,16 @@ private:
         odom_msg.pose.pose.orientation.z = quat_z;
         odom_msg.pose.pose.orientation.w = quat_w;
 
+        // Publish odom message
         odom_pub_->publish(odom_msg);
     }
 };
 
 int main(int argc, char *argv[]) {
+
     rclcpp::init(argc, argv);
     rclcpp::spin(std::make_shared<gps_to_odom>());
     rclcpp::shutdown();
+
     return 0;
 }

@@ -25,7 +25,7 @@ add_executable(gps_to_odom src/gps_to_odom.cpp)
 add_executable(odom_to_tf src/odom_to_tf.cpp)
 
 ament_target_dependencies(gps_to_odom rclcpp std_msgs nav_msgs sensor_msgs)
-ament_target_dependencies(gps_to_odom rclcpp std_msgs nav_msgs sensor_msgs geometry_msgs tf2 tf2_ros)
+ament_target_dependencies(odom_to_tf rclcpp std_msgs nav_msgs sensor_msgs geometry_msgs tf2 tf2_ros)
 
 install(TARGETS
 	gps_to_odom
@@ -33,6 +33,12 @@ install(TARGETS
 install(TARGETS
   odom_to_tf
   DESTINATION lib/${PROJECT_NAME}/)
+
+  install(
+  DIRECTORY launch
+  DESTINATION share/${PROJECT_NAME}/
+)
+
 
 
 if(BUILD_TESTING)
